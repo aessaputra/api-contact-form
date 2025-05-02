@@ -1,0 +1,5 @@
+# Environment variables
+.env
+
+# app build result
+api-contact-form
