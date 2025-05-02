@@ -18,9 +18,10 @@ func InitDB() {
 	dbPassword := GetEnv("DB_PASSWORD", "password")
 	dbHost := GetEnv("DB_HOST", "db")
 	dbPort := GetEnv("DB_PORT", "3306")
-	dbName := GetEnv("DB_Name", "db_contacts")
+	dbName := GetEnv("DB_NAME", "contactsdb")
 
-	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", &dbUser, &dbPassword, &dbHost, &dbPort, &dbName )
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
+		dbUser, dbPassword, dbHost, dbPort, dbName)
 
 	var err error
 
@@ -30,12 +31,12 @@ func InitDB() {
 		},
 	})
 	if err != nil {
-		panic(fmt.Sprintf("failed to connect to database: %v", err))
+		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
 
-	sqlDB, err :=DB.DB()
+	sqlDB, err := DB.DB()
 	if err != nil {
-		panic("failed to get database instance!")
+		panic("Failed to get database instance!")
 	}
 
 	sqlDB.SetMaxOpenConns(10)
